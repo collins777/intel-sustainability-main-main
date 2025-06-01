@@ -80,6 +80,58 @@ h6 {
   margin: 0 auto;
 }
 
+/* NEW CARD STYLES */
+/* Animate the card description from the bottom with a blue overlay on hover */
+.card-description {
+  /* Cover the entire card with no gaps */
+  position: absolute;
+  inset: 0; /* top: 0; right: 0; bottom: 0; left: 0; */
+  background: rgba(0, 104, 181, 0.85); /* Blue overlay */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  padding: 1.5rem;
+  z-index: 2;
+  margin: 0; /* Remove any margin */
+  /* No border or outline */
+}
+
+/* Show and animate the description when hovering over the card */
+.timeline-card:hover .card-description,
+.timeline-card:focus-within .card-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure the card has relative positioning */
+.timeline-card {
+  position: relative; /* Required for absolute positioning of the description */
+  overflow: hidden; /* Prevent the description from overflowing the card */
+}
+
+/* Horizontal scroll container */
+.timeline-scroll {
+  display: flex; /* Arrange cards horizontally */
+  gap: 1rem; /* Add spacing between cards */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  padding: 1rem; /* Add padding around the scroll area */
+  scroll-snap-type: x mandatory; /* Smooth snapping for cards */
+}
+
+/* Individual timeline cards */
+.timeline-card {
+  flex: 0 0 auto; /* Prevent cards from shrinking */
+  width: 320px; /* Set a fixed width for each card */
+  background: #fff; /* Card background color */
+  border: 1px solid #ddd; /* Card border */
+  box-shadow: 0 6px 24px rgba(0, 104, 181, 0.18); /* Card shadow */
+  scroll-snap-align: start; /* Snap cards to the start */
+}
 /* Card Styles */
 
 .timeline-card {
@@ -118,6 +170,11 @@ h6 {
 }
 
 section {
+  height: 45vh;
+  padding: 4rem 1rem;
+}
+
+section#timeline {
   display: flex;
   flex-direction: row;
   gap: 2rem;
@@ -129,9 +186,7 @@ section {
   min-height: 200px;
   align-items: stretch;
   /* scroll-padding-left: 5rem; */
-
   max-width: 1220px;
-
   margin: 0 auto;
 }
 
@@ -178,7 +233,8 @@ section {
     height: auto;
     min-height: 200px;
   }
-  section {
+
+  section#timeline {
     flex-direction: column;
     gap: 1.5rem;
     overflow-x: unset;
@@ -195,6 +251,21 @@ section {
   }
   .timeline-card:first-child {
     margin-left: 0;
+  }
+}
+
+/* Make timeline cards stack vertically on small screens */
+@media (max-width: 600px) {
+  .timeline-scroll {
+    flex-direction: column; /* Stack cards vertically */
+    overflow-x: unset; /* Remove horizontal scroll */
+    gap: 1rem;
+    align-items: stretch; /* Stretch cards to full width */
+  }
+  .timeline-card {
+    width: 100%; /* Cards take full width */
+    min-width: 0;
+    max-width: 100%;
   }
 }
 
@@ -290,4 +361,11 @@ section {
 .btn:hover {
   background-color: #0068b5; /* Change background color on hover */
   color: white; /* Change text color to white for contrast */
+}
+
+/* Newsletter Form */
+
+.form-control {
+  width: 40rem;
+  margin: 0 auto;
 }
