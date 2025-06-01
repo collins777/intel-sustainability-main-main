@@ -125,12 +125,13 @@ section {
   padding: 2.5rem 1rem;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  height: 40vh;
+  height: 50vh;
   min-height: 200px;
   align-items: stretch;
   /* scroll-padding-left: 5rem; */
 
   max-width: 1220px;
+
   margin: 0 auto;
 }
 
@@ -269,4 +270,24 @@ section {
   .timeline-card .overlay p {
     display: block;
   }
+}
+
+/* 3 Column Section */
+
+/* Override Bootstrap button styles */
+.btn {
+  /* Remove border-radius */
+  border-radius: 0;
+
+  /* Add outline and white background */
+  border: 2px solid #00c7fd;
+  background-color: white;
+  color: #00c7fd; /* Text color matches the outline */
+  font-weight: bold; /* Optional: Make text bold for better visibility */
+}
+
+/* Hover effect */
+.btn:hover {
+  background-color: #0068b5; /* Change background color on hover */
+  color: white; /* Change text color to white for contrast */
 }
