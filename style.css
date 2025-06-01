@@ -22,6 +22,11 @@ h6 {
   font-weight: 700;
 }
 
+.container {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
 /* Hero Section Styles */
 .hero-section {
   position: relative;
@@ -80,7 +85,6 @@ h6 {
   margin: 0 auto;
 }
 
-/* NEW CARD STYLES */
 /* Animate the card description from the bottom with a blue overlay on hover */
 .card-description {
   /* Cover the entire card with no gaps */
@@ -97,8 +101,7 @@ h6 {
   transition: transform 0.3s ease, opacity 0.3s ease;
   padding: 1.5rem;
   z-index: 2;
-  margin: 0; /* Remove any margin */
-  /* No border or outline */
+  margin: 0;
 }
 
 /* Show and animate the description when hovering over the card */
@@ -110,32 +113,9 @@ h6 {
 
 /* Ensure the card has relative positioning */
 .timeline-card {
-  position: relative; /* Required for absolute positioning of the description */
-  overflow: hidden; /* Prevent the description from overflowing the card */
-}
-
-/* Horizontal scroll container */
-.timeline-scroll {
-  display: flex; /* Arrange cards horizontally */
-  gap: 1rem; /* Add spacing between cards */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  padding: 1rem; /* Add padding around the scroll area */
-  scroll-snap-type: x mandatory; /* Smooth snapping for cards */
-}
-
-/* Individual timeline cards */
-.timeline-card {
-  flex: 0 0 auto; /* Prevent cards from shrinking */
-  width: 320px; /* Set a fixed width for each card */
-  background: #fff; /* Card background color */
-  border: 1px solid #ddd; /* Card border */
-  box-shadow: 0 6px 24px rgba(0, 104, 181, 0.18); /* Card shadow */
-  scroll-snap-align: start; /* Snap cards to the start */
-}
-/* Card Styles */
-
-.timeline-card {
   position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
   width: 320px;
   min-width: 280px;
   max-width: 320px;
@@ -169,12 +149,28 @@ h6 {
   color: #00c7fd;
 }
 
-section {
-  height: 45vh;
-  padding: 4rem 1rem;
+/* Horizontal scroll container */
+.timeline-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem;
+  scroll-snap-type: x mandatory;
+  width: 1420px;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
-section#timeline {
+/* Remove fixed height so sections grow with their content */
+section {
+  padding: 5rem 1rem;
+}
+
+/* Remove fixed height from timeline section so it doesn't overlap other sections */
+section#timeline,
+#timeline-container {
+  /* height: 50vh; */ /* Remove this line */
+  min-height: 200px;
   display: flex;
   flex-direction: row;
   gap: 2rem;
@@ -182,16 +178,9 @@ section#timeline {
   padding: 2.5rem 1rem;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  height: 50vh;
-  min-height: 200px;
   align-items: stretch;
-  /* scroll-padding-left: 5rem; */
   max-width: 1220px;
   margin: 0 auto;
-}
-
-.timeline-card:first-child {
-  margin-left: 2rem;
 }
 
 .timeline-card:hover,
@@ -199,14 +188,6 @@ section#timeline {
   box-shadow: 0 12px 32px 0 rgba(0, 104, 181, 0.28),
     0 3px 12px 0 rgba(0, 104, 181, 0.15);
   transform: translateY(-10px) scale(1.03);
-}
-
-.overlay p {
-  padding: 1.2rem 1.2rem 1.2rem 1.2rem;
-  color: #003366;
-  font-size: 1rem;
-  font-family: "Lato", Arial, Helvetica, sans-serif;
-  margin: 0;
 }
 
 .down-arrow {
@@ -233,44 +214,25 @@ section#timeline {
     height: auto;
     min-height: 200px;
   }
-
-  section#timeline {
-    flex-direction: column;
-    gap: 1.5rem;
-    overflow-x: unset;
-    padding: 1.5rem 0.5rem;
-    height: auto;
-    min-height: 0;
-    scroll-padding-left: 0;
-  }
   .timeline-card {
     max-width: 100%;
     min-width: 0;
     width: 100%;
     flex: 1 1 100%;
   }
-  .timeline-card:first-child {
-    margin-left: 0;
-  }
 }
 
-/* Make timeline cards stack vertically on small screens */
 @media (max-width: 600px) {
   .timeline-scroll {
-    flex-direction: column; /* Stack cards vertically */
-    overflow-x: unset; /* Remove horizontal scroll */
+    flex-direction: column;
+    overflow-x: unset;
     gap: 1rem;
-    align-items: stretch; /* Stretch cards to full width */
+    align-items: stretch;
   }
   .timeline-card {
-    width: 100%; /* Cards take full width */
+    width: 100%;
     min-width: 0;
     max-width: 100%;
-  }
-}
-
-@media (max-width: 600px) {
-  .timeline-card {
     margin-left: 0;
     margin-right: 0;
     padding-left: 1rem;
@@ -279,16 +241,6 @@ section#timeline {
   }
   .timeline-card img {
     padding-bottom: 1rem;
-  }
-  .timeline-card .overlay p {
-    display: none;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-  }
-  .timeline-card.active .overlay p {
-    display: block;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
   }
   .hero-content h1 {
     font-size: 1.5rem;
@@ -337,34 +289,21 @@ section#timeline {
   }
 }
 
-@media (min-width: 601px) {
-  .timeline-card .overlay p {
-    display: block;
-  }
-}
-
-/* 3 Column Section */
-
 /* Override Bootstrap button styles */
 .btn {
-  /* Remove border-radius */
   border-radius: 0;
-
-  /* Add outline and white background */
   border: 2px solid #00c7fd;
   background-color: white;
-  color: #00c7fd; /* Text color matches the outline */
-  font-weight: bold; /* Optional: Make text bold for better visibility */
+  color: #00c7fd;
+  font-weight: bold;
 }
 
-/* Hover effect */
 .btn:hover {
-  background-color: #0068b5; /* Change background color on hover */
-  color: white; /* Change text color to white for contrast */
+  background-color: #0068b5;
+  color: white;
 }
 
 /* Newsletter Form */
-
 .form-control {
   width: 40rem;
   margin: 0 auto;
