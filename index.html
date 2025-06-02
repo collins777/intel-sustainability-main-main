@@ -71,9 +71,15 @@
       </svg>
     </div>
     <!-- Timeline Section -->
-    <!-- Timeline Section with Horizontal Scroll -->
-    <section id="timeline-container" class="container my-5">
-      <div class="timeline-scroll">
+    <!-- Timeline Section with Flexbox for horizontal/vertical layout -->
+    <!-- TODO: fix timeline-container id in css -->
+    <section class="container my-5">
+      <!--
+        This container uses flexbox.
+        On desktop: cards are in a row (horizontal).
+        On mobile: cards stack vertically.
+      -->
+      <div class="timeline-flex">
         <!-- Card 1 -->
         <div class="timeline-card">
           <div class="card-body">
@@ -195,11 +201,11 @@
       </div>
     </section>
     <!-- Three Column Section -->
-    <section class="container text-center">
+    <section class="container">
       <!-- Row with three columns -->
       <div class="row">
         <!-- Column 1 -->
-        <div class="col-md-4">
+        <div class="col-md-4 mb-5 mt-3 px-4">
           <h3>
             Column One
             <img
@@ -217,7 +223,7 @@
           <a href="#" class="btn btn-primary">Learn More</a>
         </div>
         <!-- Column 2 -->
-        <div class="col-md-4">
+        <div class="col-md-4 mb-5 mt-3 px-4">
           <h3>
             Column Two
             <img
@@ -235,7 +241,7 @@
           <a href="#" class="btn btn-primary">Learn More</a>
         </div>
         <!-- Column 3 -->
-        <div class="col-md-4">
+        <div class="col-md-4 mb-5 mt-3 px-4">
           <h3>
             Column Three
             <img
@@ -258,7 +264,7 @@
     <!-- Subscription Form Section -->
     <section class="container text-center my-5">
       <h2>Subscribe to Our Sustainability Newsletter</h2>
-      <p>
+      <p class="px-4">
         Stay updated with Intel's latest sustainability initiatives and
         progress.
       </p>
@@ -278,7 +284,27 @@
         <button type="submit" class="btn btn-primary">Subscribe</button>
       </form>
     </section>
-
+    <!-- Bootstrap Footer -->
+    <footer class="bg-light text-center text-lg-start mt-5">
+      <div class="container p-4">
+        <!-- Navigation links -->
+        <ul class="nav justify-content-center mb-3">
+          <li class="nav-item">
+            <a class="nav-link text-secondary" href="#">Privacy Policy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary" href="#">Terms of Use</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary" href="#">Contact</a>
+          </li>
+        </ul>
+        <!-- Copyright -->
+        <p class="text-secondary mb-0">
+          &copy; 2024 Intel Corporation. All rights reserved.
+        </p>
+      </div>
+    </footer>
     <!-- Boostrap CDN -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"

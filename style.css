@@ -22,6 +22,33 @@ h6 {
   font-weight: 700;
 }
 
+h2 {
+  color: #0068b5;
+}
+
+h3 {
+  color: #00c7fd;
+}
+
+/* Remove fixed height so sections grow with their content */
+section {
+  padding: 5rem 1rem;
+}
+
+/* Override Bootstrap button styles */
+.btn {
+  border-radius: 0;
+  border: 2px solid #00c7fd;
+  background-color: white;
+  color: #00c7fd;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #0068b5;
+  color: white;
+}
+
 .container {
   max-width: 1360px;
   margin: 0 auto;
@@ -137,39 +164,55 @@ h6 {
   display: block;
 }
 
-.info {
-  padding: 1rem;
-}
-
-.info h2 {
-  color: #0068b5;
-}
-
-.info h3 {
-  color: #00c7fd;
-}
-
 /* Horizontal scroll container */
 .timeline-scroll {
+  display: flex; /* Arrange cards horizontally */
+  gap: 1rem; /* Add spacing between cards */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  padding: 1rem; /* Add padding around the scroll area */
+  width: calc(320px * 4 + 4rem); /* Width to fit 4 cards + gaps */
+  max-width: 100%; /* Ensure responsiveness */
+  margin: 0 auto; /* Center the scroll container */
+  scroll-snap-type: x mandatory; /* Smooth snapping for cards */
+  height: 300px;
+}
+
+/* Timeline Flexbox Layout */
+/* This container arranges timeline cards in a row on desktop and stacks them on mobile */
+.timeline-flex {
   display: flex;
+  flex-direction: row; /* Horizontal on desktop */
   gap: 1rem;
   overflow-x: auto;
-  padding: 1rem;
-  scroll-snap-type: x mandatory;
-  width: 1420px;
+  padding: 1rem 0;
+  width: 1420px; /* Show 4 cards (4 x 320px + 3 x 1rem gap) */
   max-width: 100%;
   margin: 0 auto;
 }
 
-/* Remove fixed height so sections grow with their content */
-section {
-  padding: 5rem 1rem;
+/* Stack timeline cards vertically on small screens */
+@media (max-width: 600px) {
+  .timeline-flex {
+    flex-direction: column; /* Vertical on mobile */
+    gap: 1rem;
+    overflow-x: unset;
+    align-items: stretch;
+    width: 100%; /* Full width on mobile */
+  }
+}
+
+/* Increase section height on desktops */
+@media (min-width: 1024px) {
+  section {
+    min-height: 600px; /* Increase the minimum height for desktop screens */
+  }
 }
 
 /* Remove fixed height from timeline section so it doesn't overlap other sections */
 section#timeline,
 #timeline-container {
   /* height: 50vh; */ /* Remove this line */
+
   min-height: 200px;
   display: flex;
   flex-direction: row;
@@ -201,6 +244,12 @@ section#timeline,
   animation: pulse-arrow 1.2s infinite;
   opacity: 0.85;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  .down-arrow {
+    display: none;
+  }
 }
 
 .down-arrow.arrow-clicked {
@@ -287,20 +336,6 @@ section#timeline,
     transform: translateX(-50%) translateY(0) scale(1);
     opacity: 0.85;
   }
-}
-
-/* Override Bootstrap button styles */
-.btn {
-  border-radius: 0;
-  border: 2px solid #00c7fd;
-  background-color: white;
-  color: #00c7fd;
-  font-weight: bold;
-}
-
-.btn:hover {
-  background-color: #0068b5;
-  color: white;
 }
 
 /* Newsletter Form */
